@@ -4,6 +4,10 @@ draw = (function() {
     ERROR = false;
     $canvas = document.getElementById("canvas");
     
+    // TODO
+    // move color to css style
+    // pupsub to get robot data
+    
     function drawCircle(r, x, y, color) {
         // create empty circle element
         var circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
@@ -24,7 +28,6 @@ draw = (function() {
 
     function drawLine(x1, y1, x2, y2) {
         var line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-
         // set user input attributes
         line.setAttribute("x1", x1);
         line.setAttribute("y1", y1);
@@ -33,8 +36,14 @@ draw = (function() {
 
         line.setAttribute("stroke", "black");
         line.setAttribute("stroke-width", "3");
-
+        
+        console.log(line);
         $canvas.appendChild(line);
+    }
+    
+    function drawAxis() {
+        drawLine(mtopx.origin.x, 0, mtopx.origin.x, heightP );
+        drawLine(0, mtopx.origin.y, widthP, mtopx.origin.y);
     }
     
     mtopx = (function() {
@@ -44,10 +53,10 @@ draw = (function() {
         widthP = parseFloat($canvas.getAttribute("width"));
         heightP = parseFloat($canvas.getAttribute("height"));
 
-        x_min = -1;
-        x_max = 1;
-        y_min = -1;
-        y_max = 1;
+        x_min = -1.0;
+        x_max = 4.0;
+        y_min = -1.0;
+        y_max = 4.0;
 
         console.log("mtopx init, width = ", widthP, " height = ", heightP);
 
@@ -56,7 +65,7 @@ draw = (function() {
         function _calcOriginP() {
             // TODO does not work for all sign combinations
             x = Math.abs(x_min) / (x_max - x_min) * widthP;
-            y = Math.abs(y_min) / (y_max - y_min) * heightP;
+            y = heightP - Math.abs(y_min) / (y_max - y_min) * heightP;
 
             return {x: x, y: y};
         }
@@ -87,6 +96,8 @@ draw = (function() {
 
         }
         
+        
+        // TODO can not work, variables don't change afterward I think
         function setCoordLimitsM(limits) {
             x_min = limits[0];
             x_max = limits[1];
@@ -96,14 +107,16 @@ draw = (function() {
 
         return {
             getCoordP: getCoordP,
-            setCoordLimitsM: setCoordLimitsM
+            setCoordLimitsM: setCoordLimitsM,
+            origin: origin
         };
     })();
     
     return {
         mtopx: mtopx,
         circle: drawCircle,
-        line: drawLine
+        line: drawLine,
+        axis: drawAxis
     }
 })();
 
