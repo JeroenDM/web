@@ -54,20 +54,21 @@ RobotModel = (function() {
     
     function forwardKinematics(jointValues) {
         // TODO, still hard coded now
-        j1 = jointValues[0];
-        j2 = jointValues[1];
-        l1 = description.links[0].length;
-        l2 = description.links[1].length;
+        j = jointValues;
+        l = [];
+        for (i=0; i<description.links.length; i++) {
+            l[i] = description.links[i].length;
+        }
         // cartesian coordinates joint 1
         p1 = {
-            x: l1 * Math.cos(j1),
-            y: l1 * Math.sin(j1)
+            x: l[0] * Math.cos(j[0]),
+            y: l[0] * Math.sin(j[0])
         };
         
         // cartesian coordinates joint 2
         p2 = {
-            x: p1.x + l2 * Math.cos(j1 + j2),
-            y: p1.y + l2 * Math.sin(j1 + j2)
+            x: p1.x + l[1] * Math.cos(j[0] + j[1]),
+            y: p1.y + l[1] * Math.sin(j[0] + j[1])
         };
         
         return [ p1, p2 ];

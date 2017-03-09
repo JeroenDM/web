@@ -1,7 +1,7 @@
 //draw.mtopx.setCoordLimitsM([-1, 5, -1, 5]);
 DEG2RAD = Math.PI / 180.0;
-j1 = 30 * DEG2RAD;
-j2 = 30 * DEG2RAD;
+j1 = 50 * DEG2RAD;
+j2 = -20 * DEG2RAD;
 
 RobotModel.draw([j1, j2]);
 draw.axis();
