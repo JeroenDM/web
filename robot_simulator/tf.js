@@ -1,3 +1,10 @@
+// 2D rotation matrix class
+// aka only rotations around the z-axis, when considered in 3D
+function rotation(angle) {
+    this.angle = angle;
+    this.matrix = [[ Math.cos(pose[2]), Math.sin(pose[2]) ]
+                   [-Math.sin(pose[2]), Math.cos(pose[2]) ]];
+};
 
 // define a class frame to describe the position of a rigid body
 // in 2D: pose: [x, y, theta]
@@ -12,11 +19,43 @@ function frame(name, pose) {
 }
 
 frame.prototype.toString = function() {
-    return "This is a frame called: " + this.name + ".\n" +
-        "Pose: " + this.pose + "\n" +
-        this.matrix[0] + "\n" +
-        this.matrix[1] + "\n" +
-        this.matrix[2] + "\n";
+    
+    function printMatrix(m, d) {
+        // Print a matrix m with floats to d decimal points
+        if (d == undefined ) { d = 2; }
+        var str = "";
+        var row = m.length;
+        
+        // if vector
+        if (m[0].length == undefined ) {
+            str += "[";
+            for (var i = 0; i < row; i++) {
+                str += "\t" + m[i].toFixed(d);
+            }
+            str += "\t]\n"
+        }
+        // if matrix
+        else {
+            var col = m[0].length;
+            for (var i = 0; i < row; i++) {
+                str += "[";
+                for (var j = 0; j < col; j++) {
+                    str += "\t" + m[i][j].toFixed(d);
+                }
+                str += "\t]\n"
+            }
+        }
+        
+        return str;
+    }
+    
+    return "Frame\n-----\n" +
+        "Name: " + this.name + ".\n" +
+        "Pose: " + printMatrix(this.pose) +
+        "Matrix:\n" + printMatrix(this.matrix);
+        //this.matrix[0] + "\n" +
+        //this.matrix[1] + "\n" +
+        //this.matrix[2] + "\n";
 }
 
 frame.prototype.inverse = function() {
@@ -24,14 +63,3 @@ frame.prototype.inverse = function() {
                                        -this.pose[1],
                                       -this.pose[2]]);
 }
-
-frame.prototype.transformPoint = function(point) {
-    
-    return numeric.dot(this.matrix, point);
-}
-
-var base = new frame("base_link", [0.0, 0.0, 0.0]);
-var ee = new frame("end_effector", [0.0, 0.0, Math.PI/2.0]);
-
-console.log(base.toString());
-console.log(ee.toString());

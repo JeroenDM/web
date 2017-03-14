@@ -1,3 +1,9 @@
+var base = new frame("base_link", [0.0, 0.0, 0.0]);
+var ee = new frame("end_effector", [0.0, 0.0, Math.PI/2.0]);
+
+console.log(base.toString());
+console.log(ee.toString());
+
 //draw.mtopx.setCoordLimitsM([-1, 5, -1, 5]);
 DEG2RAD = Math.PI / 180.0;
 j1 = 50 * DEG2RAD;
