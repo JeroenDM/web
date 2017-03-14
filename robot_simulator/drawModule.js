@@ -37,7 +37,7 @@ draw = (function() {
         line.setAttribute("stroke", "black");
         line.setAttribute("stroke-width", "3");
         
-        console.log(line);
+        //console.log(line);
         $canvas.appendChild(line);
     }
     
@@ -58,7 +58,7 @@ draw = (function() {
         y_min = -1.0;
         y_max = 4.0;
 
-        console.log("mtopx init, width = ", widthP, " height = ", heightP);
+        //console.log("mtopx init, width = ", widthP, " height = ", heightP);
 
         origin = _calcOriginP();
 
@@ -73,11 +73,11 @@ draw = (function() {
         function _checkBounds(xM, yM) {
             // no message for both values out of bound
             if (xM > x_max || xM < x_min) {
-                console.log("x value out of bound.");
+                //console.log("x value out of bound.");
                 return ERROR;
             }
             if (yM > y_max || yM < y_min) {
-                console.log("y value out of bound.");
+                //console.log("y value out of bound.");
                 return ERROR;
             }
             return SUCCES;

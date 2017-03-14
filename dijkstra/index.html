@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Dijkstra Test</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+
+    <body>
+        <div id="wrapper">
+            <h2>Simple Dijkstra Implementation in JavaScript</h2>
+            <p>This is a simple javascript implenetation of Dijkstra's Algorithm to find the minimum distance between two points. The edges are weighted randomly, and only exist fo 75% of the possible edges. Once the algorithm begins, "visited" vertices will turn gray, the vertex under current consideration yellow, and when complete, the path will be in red. Status messages are below, as well as info for any individual node.</p>
+            <p class="optional_trigger">Quick overview of the Algorithm: <span class="link">(click for description)</span></p>
+                <ul class="optional">
+                    <li>Start by setting the distance value for each vertex at Infinity.</li>
+                    <li>Set the distance for the starting Vertex to 0.</li>
+                    <li>Push all the vertices onto a sorted structure, usually some form of a heap. This particular implementation uses a simple array due to the limited size.</li>
+                    <li>Repeat the following:
+                    <ul>
+                        <li>Pop the first element off the vertices stack.</li>
+                        <li>If the current vertex = end vertex, we've found the path.</li>
+                        <li>Traverse each of it's edges to the next vertex. For each of those vertices:</li>
+                        <li>Calculate the tentative distance for that vertex: tentative distance = (current distance) + (edge weight).</li>
+                        <li>Set the distance to be the minimum of either it's current distance, or the tentative distance. (denoted as the black number on each vertex).</li>
+                        <li>Mark the current vertex as visited and never revisit. This implementation accomplishes this via the pop at the beginning, which remove it from the possible vertex pool. (vertex marked as gray when visited)</li>
+                        <li>Sort the unvisited vertex list.</li>
+                    </ul>
+                    </li>
+                    <li>If all of the vertices are removed, and no path was found, then no path exists.</li>
+                </ul>
+            </p>
+            <p>Created using <a href="http://www.jquery.com">jQuery</a> and <a href="http://d3js.org/">d3.js</a></p>
+            <p>Select any two vertexes to begin the calculations.</p>
+            <div id="svg_area">
+                <svg class="chart">
+                </svg>
+            </div>
+            <div id="controls">
+                <input type="button" id="reset" name="reset" value="Reset" />
+            </div>
+            <div id="info">
+                Check here for Vertex information.
+            </div>
+
+            <div id="messages">
+            </div>
+        </div>
+        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+        <script src="dijkstra.js" type="text/javascript"></script>
+    </body>
+</html>

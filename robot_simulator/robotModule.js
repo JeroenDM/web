@@ -47,7 +47,7 @@ RobotModel = (function() {
         
         // draw links
         for (i = 0; i < points.length - 1; i++) {
-            console.log(p[i]);
+            // console.log(p[i]);
             draw.line(p[i].x, p[i].y, p[i+1].x, p[i+1].y);
         }
     }

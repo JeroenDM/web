@@ -1,0 +1,126 @@
+html,body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: #202020;
+}
+
+#wrapper {
+    width: 900px;
+    margin: 0 auto;
+    border-left: 1px solid gray;
+    border-right: 1px solid gray;
+    background-color: white;
+    min-height: 400px;
+    padding: 3em;
+}
+
+.optional {
+    display: none;
+}
+
+#messages {
+    height: 200px;
+    border: 1px solid black;
+    overflow: auto;
+    clear: left;
+}
+
+#messages p {
+    line-height: 1em;
+    margin: 0;
+}
+
+#controls, #info {
+    float: left;
+    height: 50px;
+    margin: 0px;
+    padding: 0px;
+    border: 1px solid black;
+}
+
+#controls {
+    width: 19%;
+}
+
+#controls input[type="button"] {
+    border: none;
+    background-color: #F0F0F0;
+    color: black;
+    height: 50px;
+    width: 100%;
+}
+
+#controls input[type="button"]:hover {
+    background-color: gray;
+}
+
+#info {
+    border: 1px solid black;
+    width: 80%;
+    height:
+}
+
+.chart {
+    text-align: center;
+    margin: 0 auto;
+}
+
+.vertex {
+    stroke: black;
+    fill: white;
+}
+
+.vertex:hover {
+    fill: yellow;
+}
+
+.vertex.start {
+    fill: green;
+}
+
+.vertex.end {
+    fill: red;
+}
+
+.line {
+    stroke: red;
+}
+
+.visited {
+    fill: gray;
+    stroke: gray;
+}
+
+.path {
+    stroke-width: 5;
+    stroke: red;
+    fill: red;
+}
+
+.processing {
+    fill: yellow;
+}
+
+text {
+    font: 8px sans-serif;
+}
+
+.weight {
+    fill: gray;
+}
+
+.distance {
+    fill: black;
+}
+
+.bar {
+    fill: gray;
+    stroke: black;
+    stroke-width: 1;
+}
+
+.link {
+    text-decoration: underline;
+    color: blue;
+}
