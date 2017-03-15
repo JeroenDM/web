@@ -1,12 +1,56 @@
 
 draw = (function() {
-    SUCCES = true;
-    ERROR = false;
-    $canvas = document.getElementById("canvas");
+    const SUCCES = true;
+    const ERROR = false;
+    const $canvas = document.getElementById("canvas");
+    
+    var widthP = parseFloat($canvas.getAttribute("width"));
+    var heightP = parseFloat($canvas.getAttribute("height"));
+    
+    // d3 part
+    var xScale = d3.scaleLinear().domain([-1, 4]).range([0, widthP]);
+    var yScale = d3.scaleLinear().domain([4, -1]).range([0, heightP]);
+
+    var svg = d3.select("svg");
+    
     
     // TODO
     // move color to css style
     // pupsub to get robot data
+    
+    function drawRobot(robotData) {
+        // joints
+        var j = svg.selectAll(".joints").data(robotData.joints)
+                .attr("class", "joint")
+                .attr("cx", function(d) { return xScale(d[0]); })
+                .attr("cy", function(d) { return yScale(d[1]); })
+                .attr("r", 10 );
+        j.enter().append("circle")
+                .attr("class", "joint")
+                .attr("cx", function(d) { return xScale(d[0]); })
+                .attr("cy", function(d) { return yScale(d[1]); })
+                .attr("r", 10 );
+        j.exit().remove();
+        
+        // links
+        var l = svg.selectAll(".link").data(robotData.links)
+                .attr("class", "link")
+                .attr("x1", function(d) { return xScale(d[0]) })
+                .attr("y1", function(d) { return yScale(d[1]) })
+                .attr("x2", function(d) { return xScale(d[2]) })
+                .attr("y2", function(d) { return yScale(d[3]) });
+        l.enter().append("line")
+                .attr("class", "link")
+                .attr("x1", function(d) { return xScale(d[0]) })
+                .attr("y1", function(d) { return yScale(d[1]) })
+                .attr("x2", function(d) { return xScale(d[2]) })
+                .attr("y2", function(d) { return yScale(d[3]) });
+        j.exit().remove();
+    }
+    
+    function robotToDrawData(description, state) {
+        
+    }
     
     function drawCircle(r, x, y, color) {
         // create empty circle element
@@ -116,7 +160,8 @@ draw = (function() {
         mtopx: mtopx,
         circle: drawCircle,
         line: drawLine,
-        axis: drawAxis
+        axis: drawAxis,
+        robot: drawRobot
     }
 })();
 

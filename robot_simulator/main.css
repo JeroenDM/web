@@ -1,3 +1,14 @@
 svg {
     border: 2px solid green;
 }
+
+.joint {
+    stroke: black;
+    stroke-width: 2;
+    fill: orange;
+}
+
+.link {
+    stroke: black;
+    stroke-width: 3;
+}

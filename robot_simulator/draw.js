@@ -9,8 +9,49 @@ DEG2RAD = Math.PI / 180.0;
 j1 = 50 * DEG2RAD;
 j2 = -20 * DEG2RAD;
 
-RobotModel.draw([j1, j2]);
+//RobotModel.draw([j1, j2]);
 draw.axis();
+
+var robDate = RobotModel.data;
+
+var testdata = {
+    joints: [
+        [0, 0],
+        [1, 1]
+    ],
+    links: [
+        [0, 0, 1, 1],
+        [1, 1, 1, 2]
+    ]
+};
+    
+draw.robot(testdata);
+
+testdata.joints.push(
+    [1, 2]
+);
+testdata.links.push(
+    [1, 2, 2, 2]
+);
+
+testdata.joints[0][1] = 1;
+
+//draw.robot(testdata);
+
+//svg.selectAll(".joints").data(testdata.joints).enter().append("circle")
+//        .attr("class", "joint")
+//        .attr("cx", function(d) { return xScale(d[0]); })
+//        .attr("cy", function(d) { return yScale(d[1]); })
+//        .attr("r", 10 );
+//svg.selectAll(".joints").data(testdata.joints).exit().remove();
+//
+//svg.selectAll(".link").data(testdata.links).enter().append("line")
+//        .attr("class", "link")
+//        .attr("x1", function(d) { return xScale(d[0]) })
+//        .attr("y1", function(d) { return yScale(d[1]) })
+//        .attr("x2", function(d) { return xScale(d[2]) })
+//        .attr("y2", function(d) { return yScale(d[3]) });
+//svg.selectAll(".links").data(testdata.links).exit().remove();
 
 //DEG2RAD = Math.PI / 180.0;
 //

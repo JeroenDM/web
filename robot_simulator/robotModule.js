@@ -27,6 +27,11 @@ RobotModel = (function() {
         ]
     };
     
+    var state = [];
+    for (var i = 0; i < description.joints.length; i++) {
+        state.push(description.joints[i].initValue);
+    }
+    
     function drawRobot(jointValues) {
         //draw origin
         //p0 = draw.mtopx.getCoordP(0, 0);
@@ -75,7 +80,9 @@ RobotModel = (function() {
     }
     
     return {
-        draw: drawRobot
+        draw: drawRobot,
+        data: description,
+        state: state
     };
     
 })();
